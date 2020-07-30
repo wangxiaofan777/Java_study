@@ -120,7 +120,7 @@ public class BST<E extends Comparable<E>> {
 
     //使用非递归方式实现前序遍历
     public void preOrderNR() {
-        Stack<Node> stack = new Stack<>();
+        Stack<Node> stack = new Stack<Node>();
         stack.push(root);
         while (!stack.isEmpty()) {
             Node cur = stack.pop();
@@ -165,7 +165,7 @@ public class BST<E extends Comparable<E>> {
 
     //层序遍历，广度优先级遍历
     public void levelOrder() {
-        Queue<Node> queue = new LinkedList<>();
+        Queue<Node> queue = new LinkedList<Node>();
         queue.add(root);
         while (!queue.isEmpty()) {
             Node cur = queue.remove();
