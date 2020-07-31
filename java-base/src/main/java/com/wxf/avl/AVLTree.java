@@ -1,5 +1,8 @@
 package com.wxf.avl;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+import com.wxf.bst.BST;
+
 import java.util.ArrayList;
 
 public class AVLTree<K extends Comparable<K>, V> {
@@ -93,6 +96,38 @@ public class AVLTree<K extends Comparable<K>, V> {
         return getHeight(node.left) - getHeight(node.right);
     }
 
+    //对y节点进行右旋操作，返回旋转后的新节点的根节点
+    private Node rightRotate(Node y) {
+
+        Node x = y.left;
+        Node T3 = x.right;
+
+        //右旋过程
+        x.right = y;
+        y.left = T3;
+
+        //更新height
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+
+        return x;
+    }
+
+    //对y节点进行左旋操作，返回旋转后新节点的根节点
+    private Node leftRotate(Node y) {
+        Node x = y.left;
+        Node T2 = x.left;
+
+        x.left = y;
+        y.right = T2;
+
+        //更新height
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+
+        return x;
+    }
+
     //向以node为根的二分搜索树中插入元素(key, value)，递归算法
     //返回插入新节点后的二分搜索树的根
     private Node add(Node node, K key, V value) {
@@ -119,8 +154,102 @@ public class AVLTree<K extends Comparable<K>, V> {
             System.out.println("unbalance  AVL TREE:" + balanceFactor);
         }
 
+        //平衡维护 LL
+        if (balanceFactor > 1 && getBalanceFactor(node.left) >= 0)
+            return rightRotate(node);
+
+        //RR
+        if (balanceFactor < -1 && getBalanceFactor(node.right) <= 0)
+            return leftRotate(node);
+
+        //LR
+        if (balanceFactor > 1 && getBalanceFactor(node.left) < 0) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
+        }
+
+        //RL
+        if (balanceFactor < -1 && getBalanceFactor(node.right) > 0) {
+            node.right = rightRotate(node.right);
+            return leftRotate(node);
+        }
+
         return node;
     }
 
+    public Node remove(Node node, K key) {
+        if (node == null)
+            return null;
+
+        Node retNode;
+        if (key.compareTo(node.key) < 0) {
+            node.left = remove(node.left, key);
+            retNode = node;
+        } else if (key.compareTo(node.key) > 0) {
+            node.right = remove(node.right, key);
+            retNode = node;
+        } else {
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                size--;
+                retNode = rightNode;
+            } else if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                size--;
+                retNode = leftNode;
+            } else {
+                Node successor = minimum(node.right);
+                successor.right = remove(node.right, successor.key);
+                successor.left = node.left;
+
+                node.left = node.right = null;
+
+                retNode = successor;
+            }
+        }
+
+        if (retNode == null)
+            return null;
+
+        //更新height
+        retNode.height = 1 + Math.max(getHeight(retNode.left), getHeight(retNode.right));
+
+        //计算平衡因子
+        int balanceFactor = getBalanceFactor(retNode);
+        if (Math.abs(balanceFactor) > 1) {
+            System.out.println("unbalance  AVL TREE:" + balanceFactor);
+        }
+
+        //平衡维护 LL
+        if (balanceFactor > 1 && getBalanceFactor(retNode.left) >= 0)
+            return rightRotate(retNode);
+
+        //RR
+        if (balanceFactor < -1 && getBalanceFactor(retNode.right) <= 0)
+            return leftRotate(retNode);
+
+        //LR
+        if (balanceFactor > 1 && getBalanceFactor(retNode.left) < 0) {
+            retNode.left = leftRotate(retNode.left);
+            return rightRotate(retNode);
+        }
+
+        //RL
+        if (balanceFactor < -1 && getBalanceFactor(retNode.right) > 0) {
+            retNode.right = rightRotate(retNode.right);
+            return leftRotate(retNode);
+        }
+        return retNode;
+    }
+
+    //递归查找最小值节点
+    private Node minimum(Node node) {
+        if (node.left == null)
+            return node;
+
+        return minimum(node.left);
+    }
 
 }
