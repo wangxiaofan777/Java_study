@@ -1,4 +1,4 @@
-package com.wxf.avl;
+package com.wxf.tree;
 
 public interface Map<K, V> {
 

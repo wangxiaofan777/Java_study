@@ -1,8 +1,6 @@
 package com.wxf.linkedlist;
 
 
-import com.wxf.bst.BST;
-
 public class Main {
     public static void main(String[] args) {
         /*LinkedList<Integer> linkedList = new LinkedList<>();

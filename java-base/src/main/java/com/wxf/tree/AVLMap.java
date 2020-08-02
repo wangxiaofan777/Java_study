@@ -1,4 +1,4 @@
-package com.wxf.avl;
+package com.wxf.tree;
 
 public class AVLMap<K extends Comparable<K>, V> implements Map<K, V> {
 

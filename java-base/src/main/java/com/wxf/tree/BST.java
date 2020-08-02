@@ -1,4 +1,4 @@
-package com.wxf.bst;
+package com.wxf.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;
