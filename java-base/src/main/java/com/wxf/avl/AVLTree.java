@@ -177,7 +177,15 @@ public class AVLTree<K extends Comparable<K>, V> {
         return node;
     }
 
-    public Node remove(Node node, K key) {
+    /**
+     * 移除
+     * @param key
+     */
+    public void remove(K key) {
+        root = remove(root, key);
+    }
+
+    private Node remove(Node node, K key) {
         if (node == null)
             return null;
 
