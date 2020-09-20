@@ -10,6 +10,8 @@ import java.io.*;
  */
 public class ReaderExample {
 
+    private static final String fileName = "D:\\java\\workspace\\Java_study\\java-base\\src\\main\\java\\com\\wxf\\io\\ReaderExample.java";
+
     public static void main(String[] args) {
         fileInputStreamReader();
     }
@@ -22,7 +24,7 @@ public class ReaderExample {
         FileInputStream inputStream = null;
         InputStreamReader reader = null;
         try {
-            inputStream = new FileInputStream("D:\\java\\workspace\\Java_study\\java-base\\src\\main\\java\\com\\wxf\\io\\ReaderExample.java");
+            inputStream = new FileInputStream(fileName);
             reader = new InputStreamReader(inputStream);
             int data = reader.read();
             while (data != -1) {
@@ -63,7 +65,7 @@ public class ReaderExample {
     public static void fileReader() {
         Reader reader = null;
         try {
-            reader = new FileReader("D:\\java\\workspace\\Java_study\\java-base\\src\\main\\java\\com\\wxf\\io\\ReaderExample.java");
+            reader = new FileReader(fileName);
             int data = 0;
             data = reader.read();
             while (data != -1) {

@@ -10,6 +10,8 @@ import java.io.*;
  */
 public class WriterExample {
 
+    private static final String fileName = "D:\\java\\workspace\\Java_study\\java-base\\src\\main\\java\\com\\wxf\\io\\test.txt";
+
     public static void main(String[] args) {
         fileOutputWriter();
     }
@@ -22,7 +24,7 @@ public class WriterExample {
         FileOutputStream outputStream = null;
         Writer writer = null;
         try {
-            outputStream = new FileOutputStream("D:\\java\\workspace\\Java_study\\java-base\\src\\main\\java\\com\\wxf\\io\\test.txt");
+            outputStream = new FileOutputStream(fileName);
             writer = new OutputStreamWriter(outputStream);
             writer.write("Hello World~");
 
@@ -57,7 +59,7 @@ public class WriterExample {
     public static void fileWriter() {
         Writer writer = null;
         try {
-            writer = new FileWriter("D:\\java\\workspace\\Java_study\\java-base\\src\\main\\java\\com\\wxf\\io\\test.txt");
+            writer = new FileWriter(fileName);
             writer.write("Hello world!!!");
         } catch (IOException e) {
             e.printStackTrace();
