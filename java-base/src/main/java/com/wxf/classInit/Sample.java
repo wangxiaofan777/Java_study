@@ -27,8 +27,4 @@ public class Sample {
         return instance;
     }
 
-    public static void main(String[] args) {
-        System.out.println(Sample.getInstance().x);
-        System.out.println(Sample.getInstance().y);
-    }
 }
