@@ -7,10 +7,14 @@ package com.wxf.classInit;
  */
 public class Child extends Parent {
 
+    static {
+        System.out.println("Child has been initialized!");
+    }
+
     public static int y = 20;
 
     public Child() {
-        System.out.println("Child class has been initialized!");
+        System.out.println("Child constructor has been initialized!");
     }
 
 

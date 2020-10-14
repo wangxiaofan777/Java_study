@@ -9,8 +9,12 @@ public class Parent {
 
     public static int x = 10;
 
+    static {
+        System.out.println("Parent has been initialized!");
+    }
+
     public Parent() {
-        System.out.println("Parent class has been initialized!");
+        System.out.println("Parent constructor has been initialized!");
     }
 
 }
