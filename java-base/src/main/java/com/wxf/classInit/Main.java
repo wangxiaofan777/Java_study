@@ -25,10 +25,13 @@ public class Main {
 //        Class.forName("com.wxf.classInit.Simple");
 
 
-        //调用静态变量
+        //调用静态变量，不会发生初始化
         System.out.println(Simple.CONSTANCE_X);
 
+        //通过数组定义类引用，不会导致类的初始化
+        Simple[] simples = new Simple[10];
+
         //调用需要运算的静态变量
-        System.out.println(Simple.CONSTANCE_Y);
+//        System.out.println(Simple.CONSTANCE_Y);
     }
 }
