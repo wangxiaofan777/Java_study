@@ -9,22 +9,24 @@ package com.wxf.classInit;
  */
 public class Sample {
 
-    private Sample() {
-
-    }
+    private static Sample instance = new Sample();
 
     public static int x = 0;
     public static int y;
 
-    static {
+    private Sample() {
         x++;
         y++;
     }
 
-    private static Sample instance = new Sample();
-
     public static Sample getInstance() {
         return instance;
+    }
+
+    public static void main(String[] args) {
+        Sample sample = Sample.getInstance();
+        System.out.println(sample.x);
+        System.out.println(sample.y);
     }
 
 }
