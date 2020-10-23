@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: app1
+  kafka:
+    # 生产者
+    producer:
+      acks:
+      key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      bootstrap-servers: 192.168.41.12:9092
+      retries: 3
+#      batch-size:
+#      buffer-memory:
+    # 消费者
+    consumer:
+      bootstrap-servers: 192.168.41.12:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      auto-commit-interval: 100
+      enable-auto-commit: true
+      auto-offset-reset: earliest
+      group-id: YD
+
