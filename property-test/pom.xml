@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.wxf</groupId>
+        <artifactId>Java-study</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
+
     <groupId>com.wxf</groupId>
     <artifactId>property-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>property-test</name>
-    <description>Demo project for Spring Boot</description>
+    <name>kafka-test</name>
+    <description>kafka相关测试</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -26,12 +26,10 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-            <version>2.5.6.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.14</version>
         </dependency>
 
         <dependency>
