@@ -1,4 +1,4 @@
-package com.wxf.model;
+package com.wxf.model.observer;
 
 import java.util.ArrayList;
 import java.util.List;
