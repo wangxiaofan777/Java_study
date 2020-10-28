@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>java-base</module>
-        <module>property-test</module>
+        <module>kafka-test</module>
         <module>dubbo-provider</module>
         <module>dubbo-consumer</module>
     </modules>
@@ -28,6 +28,7 @@
         <fastjson.version>1.2.73</fastjson.version>
         <springboot.version>2.3.4.RELEASE</springboot.version>
         <kafka.version>2.5.6.RELEASE</kafka.version>
+        <cglib.version>3.3.0</cglib.version>
     </properties>
 
 
@@ -63,6 +64,12 @@
                 <artifactId>spring-kafka</artifactId>
                 <version>${kafka.version}</version>
             </dependency>
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
