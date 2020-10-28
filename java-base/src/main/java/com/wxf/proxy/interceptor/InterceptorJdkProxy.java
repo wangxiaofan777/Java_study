@@ -41,9 +41,9 @@ public class InterceptorJdkProxy implements InvocationHandler {
     /**
      * 通过代理对象调用方法，首先进入这个方法
      *
-     * @param proxy 代理对象
+     * @param proxy  代理对象
      * @param method 被调用方法
-     * @param args 方法的参数
+     * @param args   方法的参数
      * @return
      * @throws Throwable 异常
      */
@@ -58,7 +58,7 @@ public class InterceptorJdkProxy implements InvocationHandler {
         //调用前置方法
         if (interceptor.before(proxy, target, method, args)) {
             //反射原有对象方法
-            result = method.invoke(proxy, target, method, args);
+            result = method.invoke(target, args);
         } else {
             //返回false执行around方法
             interceptor.around(proxy, target, method, args);
