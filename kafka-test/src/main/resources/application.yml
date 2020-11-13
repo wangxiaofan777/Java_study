@@ -21,3 +21,6 @@ spring:
       auto-offset-reset: earliest
       group-id: YD
 
+  datasource:
+    driver-class-name: org.postgresql.Driver
+

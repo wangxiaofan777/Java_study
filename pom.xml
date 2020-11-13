@@ -29,6 +29,8 @@
         <springboot.version>2.3.4.RELEASE</springboot.version>
         <kafka.version>2.5.6.RELEASE</kafka.version>
         <cglib.version>3.3.0</cglib.version>
+        <spring-security.version>5.4.1</spring-security.version>
+
     </properties>
 
 
@@ -68,6 +70,16 @@
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
                 <version>${cglib.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${spring-security.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.2.10</version>
             </dependency>
 
         </dependencies>
