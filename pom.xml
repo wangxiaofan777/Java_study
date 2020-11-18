@@ -20,6 +20,7 @@
         <module>kafka-test</module>
         <module>dubbo-provider</module>
         <module>dubbo-consumer</module>
+        <module>spark</module>
     </modules>
 
     <properties>
@@ -30,6 +31,9 @@
         <kafka.version>2.5.6.RELEASE</kafka.version>
         <cglib.version>3.3.0</cglib.version>
         <spring-security.version>5.4.1</spring-security.version>
+        <spark.version>3.0.0</spark.version>
+        <httpclient.version>4.5.6</httpclient.version>
+        <commons.version>3.11</commons.version>
 
     </properties>
 
@@ -80,6 +84,22 @@
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>42.2.10</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_2.12</artifactId>
+                <version>${spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.version}</version>
             </dependency>
 
         </dependencies>
