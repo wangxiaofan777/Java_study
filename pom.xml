@@ -13,14 +13,13 @@
     <artifactId>Java-study</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Java-study</name>
-    <description></description>
+    <description>root</description>
     <packaging>pom</packaging>
     <modules>
         <module>java-base</module>
         <module>kafka-test</module>
-        <module>dubbo-provider</module>
-        <module>dubbo-consumer</module>
         <module>spark</module>
+        <module>dubbo</module>
     </modules>
 
     <properties>
