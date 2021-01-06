@@ -12,7 +12,7 @@
     <artifactId>dubbo</artifactId>
 
     <modules>
-        <module>dubbo-producer</module>
+        <module>dubbo-provider</module>
         <module>dubbo-consumer</module>
         <module>dubbo-interface</module>
     </modules>
