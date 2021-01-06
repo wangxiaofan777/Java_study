@@ -8,9 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <description>dubbo生产者</description>
 
-    <artifactId>dubbo-provider</artifactId>
-
+    <artifactId>dubbo-interface</artifactId>
 
 </project>

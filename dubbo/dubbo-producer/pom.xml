@@ -8,9 +8,9 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <description>dubbo消费者</description>
+    <description>dubbo生产者</description>
 
-    <artifactId>dubbo-consumer</artifactId>
+    <artifactId>dubbo-provider</artifactId>
 
     <dependencies>
         <dependency>
@@ -67,6 +67,5 @@
             <artifactId>log4j</artifactId>
         </dependency>
     </dependencies>
-
 
 </project>
