@@ -19,4 +19,11 @@ public class UserController {
         User user = userService.getUserInfo();
         return user;
     }
+
+    @GetMapping("/getCacheUserInfo")
+    @ResponseBody
+    public User getCacheUserInfo() {
+        User user = userService.getCacheUserInfo();
+        return user;
+    }
 }
