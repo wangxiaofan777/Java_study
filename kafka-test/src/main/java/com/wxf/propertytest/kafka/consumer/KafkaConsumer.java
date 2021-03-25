@@ -1,6 +1,6 @@
 package com.wxf.propertytest.kafka.consumer;
 
-import org.springframework.kafka.annotation.KafkaListener;
+//import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
 /**
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaConsumer {
 
-    @KafkaListener(topics = "yd_event")
+//    @KafkaListener(topics = "yd_event")
     public void onMessage(String msg) {
         System.out.println(msg);
 
