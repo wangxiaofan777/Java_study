@@ -1,4 +1,8 @@
 package com.wxf.inventory.request;
 
-public class Request {
+public interface Request {
+
+    public void process();
+
+    Integer getProductId();
 }

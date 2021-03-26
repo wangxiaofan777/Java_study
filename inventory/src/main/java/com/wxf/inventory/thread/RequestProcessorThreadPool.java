@@ -19,7 +19,7 @@ public class RequestProcessorThreadPool {
     public RequestProcessorThreadPool() {
         RequestQueue requestQueue = RequestQueue.getInstance();
         for (int i = 0; i < 10; i++) {
-            ArrayBlockingQueue<Request> queue = new ArrayBlockingQueue<>(100);
+            ArrayBlockingQueue<Request> queue = new ArrayBlockingQueue<>(10);
             requestQueue.add(queue);
             executorService.submit(new RequestProcessorThread(queue));
         }

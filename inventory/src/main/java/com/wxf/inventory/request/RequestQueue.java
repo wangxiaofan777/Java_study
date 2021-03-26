@@ -6,7 +6,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class RequestQueue {
 
-    private List<ArrayBlockingQueue<Request>> queues = new ArrayList<>(10);
+    private List<ArrayBlockingQueue<Request>> queues = new ArrayList<>(100);
 
     private RequestQueue() {
     }
@@ -27,7 +27,31 @@ public class RequestQueue {
         return Instance.getInstance();
     }
 
+    /**
+     * 添加一个内存队列
+     *
+     * @param queue
+     */
     public void add(ArrayBlockingQueue<Request> queue) {
         queues.add(queue);
+    }
+
+    /**
+     * 获取内存队列的数量
+     *
+     * @return
+     */
+    public int queueSize() {
+        return queues.size();
+    }
+
+    /**
+     * 获取内存队列
+     *
+     * @param index
+     * @return
+     */
+    public ArrayBlockingQueue<Request> getQueue(int index) {
+        return queues.get(index);
     }
 }
