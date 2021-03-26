@@ -1,20 +1,16 @@
 package com.wxf.inventory;
 
-import org.apache.ibatis.session.Configuration;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
-import org.apache.ibatis.transaction.Transaction;
 import org.mybatis.spring.annotation.MapperScan;
-import org.mybatis.spring.transaction.SpringManagedTransaction;
-import org.mybatis.spring.transaction.SpringManagedTransactionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import javax.activation.DataSource;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 
+/**
+ * 注解ServletComponentScan需要和WebListener配合使用
+ */
 @SpringBootApplication
+@ServletComponentScan
 @MapperScan("com.wxf.inventory.mapper")
 public class InventoryApplication {
 
