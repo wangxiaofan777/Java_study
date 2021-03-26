@@ -6,7 +6,6 @@ import com.wxf.inventory.service.ProductInventoryCntService;
 /**
  * 更新产品库存数量
  */
-//@Service(value = "productInventoryCntReloadRequest")
 public class ProductInventoryCntReloadRequest implements Request {
 
     private Integer productId;

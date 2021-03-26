@@ -12,15 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
-
 /**
  * 库存controller
  */
 @Controller
 public class ProductInventoryController {
 
-    @Resource
+    @Autowired
     private RequestAsyncProcessorService requestAsyncProcessorService;
     @Autowired
     private ProductInventoryCntService productInventoryCntService;
@@ -55,7 +53,7 @@ public class ProductInventoryController {
     @GetMapping(value = "/getProductInventory")
     @ResponseBody
     public ProductInventoryCnt getProductInventory(Integer productId) {
-        ProductInventoryCnt productInventoryCnt = new ProductInventoryCnt();
+        ProductInventoryCnt productInventoryCnt;
         try {
             Request request = new ProductInventoryCntReloadRequest(productId, productInventoryCntService);
             requestAsyncProcessorService.process(request);

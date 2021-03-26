@@ -18,23 +18,4 @@ public class InventoryApplication {
         SpringApplication.run(InventoryApplication.class, args);
     }
 
-   /*
-    @Bean
-    public DataSource dataSource() {
-        return new  datasource
-    }
-
-    @Bean
-    public SqlSessionFactory sessionFactory() {
-        Configuration configuration =  new Configuration();
-        SqlSessionFactory sqlSessionFactory = new DefaultSqlSessionFactory(configuration);
-        sqlSessionFactory.se
-        return sqlSessionFactory;
-    }
-
-    @Bean
-    public Transaction transaction() {
-        SpringManagedTransaction springManagedTransaction = new SpringManagedTransaction();
-        return springManagedTransaction;
-    }*/
 }
