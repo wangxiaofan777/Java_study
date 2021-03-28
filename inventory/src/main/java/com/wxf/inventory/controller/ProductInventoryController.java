@@ -55,8 +55,8 @@ public class ProductInventoryController {
     public ProductInventoryCnt getProductInventory(Integer productId) {
         ProductInventoryCnt productInventoryCnt;
         try {
-            Request request = new ProductInventoryCntReloadRequest(productId, productInventoryCntService);
-            requestAsyncProcessorService.process(request);
+            Request request = new ProductInventoryCntReloadRequest(productId, productInventoryCntService, false);
+            this.requestAsyncProcessorService.process(request);
 
             // 讲请求扔给Service之后，需要while(true)去等待前面的更新缓存操作处理完，将缓存更新到缓存队列中
             long startTime = System.currentTimeMillis();
@@ -83,8 +83,9 @@ public class ProductInventoryController {
             // 从缓存中没有获取到再从DB读取,若果可以读到，则直接返回，否则返回-1
             productInventoryCnt = this.productInventoryCntService.findProductInventoryCnt(productId);
             if (productInventoryCnt != null) {
-                // 刷新缓存
-                this.productInventoryCntService.setProductInventoryCnt(productInventoryCnt);
+                // 强制刷新缓存
+                request = new ProductInventoryCntReloadRequest(productId, productInventoryCntService, true);
+                this.requestAsyncProcessorService.process(request);
                 return productInventoryCnt;
             }
 

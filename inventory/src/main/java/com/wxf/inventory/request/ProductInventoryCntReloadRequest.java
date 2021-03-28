@@ -12,9 +12,12 @@ public class ProductInventoryCntReloadRequest implements Request {
 
     private ProductInventoryCntService productInventoryCntService;
 
-    public ProductInventoryCntReloadRequest(Integer productId, ProductInventoryCntService productInventoryCntService) {
+    private boolean forceRefresh;
+
+    public ProductInventoryCntReloadRequest(Integer productId, ProductInventoryCntService productInventoryCntService, boolean forceRefresh) {
         this.productId = productId;
         this.productInventoryCntService = productInventoryCntService;
+        this.forceRefresh = forceRefresh;
     }
 
     @Override
@@ -28,5 +31,10 @@ public class ProductInventoryCntReloadRequest implements Request {
     @Override
     public Integer getProductId() {
         return productId;
+    }
+
+    @Override
+    public boolean isForceRefresh() {
+        return false;
     }
 }

@@ -2,7 +2,9 @@ package com.wxf.inventory.request;
 
 public interface Request {
 
-    public void process();
+    void process();
 
     Integer getProductId();
+
+    boolean isForceRefresh();
 }
