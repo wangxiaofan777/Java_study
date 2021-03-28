@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Param;
 public interface InventoryCntMapper {
     void updateInventoryCnt(ProductInventoryCnt productInventoryCnt);
 
-    ProductInventoryCnt findProductInventoryCnt(@Param("produceId") Integer produceId);
+    ProductInventoryCnt findProductInventoryCnt(@Param("productId") Integer productId);
 }
