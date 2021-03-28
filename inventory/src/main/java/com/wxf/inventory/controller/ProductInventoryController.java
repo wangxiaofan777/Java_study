@@ -82,8 +82,11 @@ public class ProductInventoryController {
 
             // 从缓存中没有获取到再从DB读取,若果可以读到，则直接返回，否则返回-1
             productInventoryCnt = this.productInventoryCntService.findProductInventoryCnt(productId);
-            if (productInventoryCnt != null)
+            if (productInventoryCnt != null) {
+                // 刷新缓存
+                this.productInventoryCntService.setProductInventoryCnt(productInventoryCnt);
                 return productInventoryCnt;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

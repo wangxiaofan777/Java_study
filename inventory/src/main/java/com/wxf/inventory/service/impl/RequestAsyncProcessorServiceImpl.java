@@ -32,6 +32,9 @@ public class RequestAsyncProcessorServiceImpl implements RequestAsyncProcessorSe
                 if (flag != null && flag) {
                     flagMap.put(productId, false);
                 }
+                // flag 是null
+                if (flag == null)
+                    flagMap.put(productId, false);
 
                 // 如果是缓存刷新的请求，而且发现标识不为空，并且是false，那说明之前已经有一个数据库更新+一个缓存刷新请求了
                 if (flag != null && !flag) {
