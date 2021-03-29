@@ -6,7 +6,7 @@ import com.wxf.proxy.impl.HelloWorldImpl;
 /**
  * 责任链模式
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-28 20:25:49
  */
 public class InterceptorChain {

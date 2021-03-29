@@ -4,7 +4,7 @@ package com.wxf.classInit;
 /**
  * 类加载中变量初始化
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-14 14:40:41
  */
 public class Sample {

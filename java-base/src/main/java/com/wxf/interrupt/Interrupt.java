@@ -3,7 +3,7 @@ package com.wxf.interrupt;
 /**
  * interrupt测试
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-11-13 09:20:56
  */
 

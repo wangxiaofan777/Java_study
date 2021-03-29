@@ -14,7 +14,7 @@ import java.util.Arrays;
 /**
  * spark连接
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-11-18 10:11:27
  */
 public class SparkMain {

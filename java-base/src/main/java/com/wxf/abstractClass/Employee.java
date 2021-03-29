@@ -3,7 +3,7 @@ package com.wxf.abstractClass;
 /**
  * 抽象类的子类Employee
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-30 09:22:03
  */
 public class Employee extends Person {

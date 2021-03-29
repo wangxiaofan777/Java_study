@@ -6,7 +6,7 @@ import java.util.Observer;
 /**
  * JD观察者
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-26 23:05:50
  */
 public class JDObServer implements Observer {

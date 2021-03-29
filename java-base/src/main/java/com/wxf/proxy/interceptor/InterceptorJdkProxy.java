@@ -7,7 +7,7 @@ import java.lang.reflect.Proxy;
 /**
  * 动态代理中使用拦截器
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-28 19:53:01
  */
 public class InterceptorJdkProxy implements InvocationHandler {

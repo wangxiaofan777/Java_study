@@ -23,7 +23,7 @@ import java.util.Random;
  *      2.通过数组定义类引用，不会导致类的初始化
  *
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-14 14:07:25
  */
 public class Simple {

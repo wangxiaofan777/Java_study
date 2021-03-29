@@ -6,7 +6,7 @@ import com.wxf.proxy.impl.HelloWorldImpl;
 /**
  * Interceptor测试方法
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-28 20:06:46
  */
 public class InterceptorMain {

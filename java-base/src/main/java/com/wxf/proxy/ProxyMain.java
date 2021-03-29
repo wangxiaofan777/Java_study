@@ -5,7 +5,7 @@ import com.wxf.proxy.impl.HelloWorldImpl;
 /**
  * 动态代理测试类
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-27 22:19:18
  */
 public class ProxyMain {

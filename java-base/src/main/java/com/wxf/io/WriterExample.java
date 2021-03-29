@@ -5,7 +5,7 @@ import java.io.*;
 /**
  * Writer示例
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @date 2020-09-20 18:55:25
  */
 public class WriterExample {

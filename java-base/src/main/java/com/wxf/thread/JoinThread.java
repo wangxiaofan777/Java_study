@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Join测试
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @date {DATE} 16:11
  */
 public class JoinThread implements Runnable {

@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * USer实体类Deserializer
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-23 14:12:08
  */
 public class UserDeserializer implements Deserializer<User> {

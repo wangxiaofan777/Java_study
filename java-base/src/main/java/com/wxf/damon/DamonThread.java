@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 守护线程测试类
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-11-03 14:15:29
  */
 public class DamonThread {

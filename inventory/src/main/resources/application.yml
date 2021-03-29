@@ -13,7 +13,11 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
+  # 开启缓存
+  cache:
+    type: jcache # 该属性会自动装配JCacheCacheManager
+    jcache:
+      config: classpath:/cache/ehcache.xml
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*.xml
-

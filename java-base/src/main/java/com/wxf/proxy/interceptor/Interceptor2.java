@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 /**
  * 自定义拦截器 2
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-28 20:22:57
  */
 public class Interceptor2 implements Interceptor{

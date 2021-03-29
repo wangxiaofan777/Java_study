@@ -3,7 +3,7 @@ package com.wxf.model.observer;
 /**
  * 观察者模式测试
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-26 23:06:33
  */
 public class ObServerMain {

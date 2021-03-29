@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 /**
  * CGLIB动态代理
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-27 22:33:23
  */
 public class CglibProxyExample implements MethodInterceptor {

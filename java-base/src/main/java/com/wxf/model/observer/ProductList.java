@@ -8,7 +8,7 @@ import java.util.Observer;
 /**
  * 观察者模式
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-26 22:29:29
  */
 public class ProductList extends Observable {

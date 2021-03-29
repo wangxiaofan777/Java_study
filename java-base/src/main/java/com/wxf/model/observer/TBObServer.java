@@ -6,7 +6,7 @@ import java.util.Observer;
 /**
  * TB观察者
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-26 23:05:17
  */
 public class TBObServer implements Observer {

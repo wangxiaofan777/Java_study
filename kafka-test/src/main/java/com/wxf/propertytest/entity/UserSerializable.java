@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * User实体类Serializer
  *
- * @author WangMaoSong
+ * @author WangXiaofan777
  * @since 2020-10-23 14:12:38
  */
 public class UserSerializable implements Serializer<User> {
