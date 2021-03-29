@@ -4,6 +4,7 @@ import com.wxf.inventory.entity.ProductInfo;
 import com.wxf.inventory.response.Response;
 import com.wxf.inventory.service.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author WangXiaofan777
  * @since 2021-03-29 18:06:26
  */
+@Validated
 @RestController
 public class CacheController {
 

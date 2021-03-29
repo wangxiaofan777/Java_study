@@ -24,67 +24,66 @@
       OPTIONAL
         A <cache> element defines a cache, identified by the mandatory 'alias' attribute, to be managed by the CacheManager
     -->
-    <!--<ehcache:cache alias="productCache">
+    <ehcache:cache alias="productCache">
 
-        &lt;!&ndash;
+        <!--
           OPTIONAL, defaults to java.lang.Object
             The FQCN of the type of keys K we'll use with the Cache<K, V>
-        &ndash;&gt;
-        <ehcache:key-type copier="org.ehcache.impl.copy.SerializingCopier">java.lang.Long</ehcache:key-type>
+        -->
+        <ehcache:key-type copier="org.ehcache.impl.copy.SerializingCopier">java.lang.String</ehcache:key-type>
 
-        &lt;!&ndash;
+        <!--
           OPTIONAL, defaults to java.lang.Object
             The FQCN of the type of values V we'll use with the Cache<K, V>
-        &ndash;&gt;
-        <ehcache:value-type copier="org.ehcache.impl.copy.SerializingCopier">com.pany.domain.Product
-        </ehcache:value-type>
+        -->
+        <ehcache:value-type copier="org.ehcache.impl.copy.SerializingCopier">com.wxf.inventory.entity.ProductInfo</ehcache:value-type>
 
-        &lt;!&ndash;
+        <!--
           OPTIONAL, defaults to no expiry
             Entries to the Cache can be made to expire after a given time
-        &ndash;&gt;
+        -->
         <ehcache:expiry>
-            &lt;!&ndash;
+            <!--
               time to idle, the maximum time for an entry to remain untouched
                 Entries to the Cache can be made to expire after a given time
                 other options are:
                    * <ttl>, time to live;
                    * <class>, for a custom Expiry implementation; or
                    * <none>, for no expiry
-            &ndash;&gt;
+            -->
             <ehcache:tti unit="minutes">2</ehcache:tti>
         </ehcache:expiry>
 
-        &lt;!&ndash;
+        <!--
           OPTIONAL, defaults to no advice
             An eviction advisor, which lets you control what entries should only get evicted as last resort
             FQCN of a org.ehcache.config.EvictionAdvisor implementation
-        &ndash;&gt;
-        <ehcache:eviction-advisor>com.pany.ehcache.MyEvictionAdvisor</ehcache:eviction-advisor>
+        -->
+        <ehcache:eviction-advisor>com.wxf.inventory.config.MyEvictionAdvisor</ehcache:eviction-advisor>
 
-        &lt;!&ndash;
+        <!--
           OPTIONAL,
             Let's you configure your cache as a "cache-through",
             i.e. a Cache that uses a CacheLoaderWriter to load on misses, and write on mutative operations.
-        &ndash;&gt;
+        -->
         <ehcache:loader-writer>
-            &lt;!&ndash;
+            <!--
                 The FQCN implementing org.ehcache.spi.loaderwriter.CacheLoaderWriter
-            &ndash;&gt;
-            <ehcache:class>com.pany.ehcache.integration.ProductCacheLoaderWriter</ehcache:class>
-            &lt;!&ndash; Any further elements in another namespace &ndash;&gt;
+            -->
+            <ehcache:class>com.wxf.inventory.config.ProductCacheLoaderWriter</ehcache:class>
+            <!-- Any further elements in another namespace -->
         </ehcache:loader-writer>
 
-        &lt;!&ndash;
+        <!--
             The maximal number of entries to be held in the Cache, prior to eviction starting
-        &ndash;&gt;
+        -->
         <ehcache:heap unit="entries">200</ehcache:heap>
 
-        &lt;!&ndash;
+        <!--
            OPTIONAL
             Any further elements in another namespace
-        &ndash;&gt;
-    </ehcache:cache>-->
+        -->
+    </ehcache:cache>
 
     <!--
       OPTIONAL
