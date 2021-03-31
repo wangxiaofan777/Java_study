@@ -2,6 +2,7 @@ package com.wxf.inventory.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @author WangXiaofan777
  */
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class ProductInfo implements Serializable {
 

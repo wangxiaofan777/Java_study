@@ -1,6 +1,7 @@
 package com.wxf.inventory.service;
 
 import com.wxf.inventory.entity.ProductInfo;
+import com.wxf.inventory.entity.ShopInfo;
 
 
 /**
@@ -29,4 +30,68 @@ public interface CacheService {
     ProductInfo getLocalCache(Long id);
 
 
+    /**
+     * 保存商品信息到本地缓存
+     *
+     * @param productInfo
+     * @return
+     */
+    ProductInfo saveProductInfo2LocalCache(ProductInfo productInfo);
+
+    /**
+     * 从本地缓存获取商品信息
+     *
+     * @param id
+     * @return
+     */
+    ProductInfo getProductInfo2LocalCache(Long id);
+
+    /**
+     * 保存商品信息到Redis缓存
+     *
+     * @param productInfo
+     * @return
+     */
+    ProductInfo saveProductInfo2RedisCache(ProductInfo productInfo);
+
+    /**
+     * 从Redis缓存获取商品信息
+     *
+     * @param id
+     * @return
+     */
+    ProductInfo getProductInfo2RedisCache(Long id);
+
+
+    /**
+     * 保存店铺信息到Redis缓存
+     *
+     * @param shopInfo
+     * @return
+     */
+    ShopInfo saveShopInfo2RedisCache(ShopInfo shopInfo);
+
+    /**
+     * 从Redis缓存获取店铺信息
+     *
+     * @param id
+     * @return
+     */
+    ShopInfo getShopInfo2RedisCache(Long id);
+
+    /**
+     * 保存商铺信息到本地缓存
+     *
+     * @param shopInfo
+     * @return
+     */
+    ShopInfo saveShopInfo2LocalCache(ShopInfo shopInfo);
+
+    /**
+     * 从本地缓存获取商铺信息
+     *
+     * @param id
+     * @return
+     */
+    ShopInfo getShopInfo2LocalCache(Long id);
 }

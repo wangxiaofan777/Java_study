@@ -13,7 +13,7 @@ import java.util.Set;
  */
 @Component
 public class RedisConfig {
-
+/*
     @Bean
     public JedisCluster jedisCluster() {
         Set<HostAndPort> hostAndPorts = new HashSet<>(6);
@@ -24,6 +24,6 @@ public class RedisConfig {
         hostAndPorts.add(new HostAndPort("10.1.100.22", 7005));
         hostAndPorts.add(new HostAndPort("10.1.100.22", 7006));
         return new JedisCluster(hostAndPorts);
-    }
+    }*/
 
 }
