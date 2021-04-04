@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 商品信息
@@ -20,4 +21,6 @@ public class ProductInfo implements Serializable {
     private String name;
 
     private Integer price;
+
+    private Date modifyTime;
 }

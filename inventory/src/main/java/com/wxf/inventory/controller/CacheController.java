@@ -9,6 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 /**
  * 商品本地缓存Controller
  *
@@ -53,7 +55,8 @@ public class CacheController {
 
         if (productInfo == null) {
             // 需要从数据库中获取
-            productInfo = new ProductInfo(1L, "ceshi", 13);
+            productInfo = new ProductInfo(1L, "ceshi", 13, new Date());
+
         }
         return productInfo;
     }

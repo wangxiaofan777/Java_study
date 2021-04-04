@@ -130,7 +130,7 @@ public class ZookeeperSession {
      *
      * @return
      */
-    public ZookeeperSession getZookeeperSession() {
+    public static ZookeeperSession getZookeeperSession() {
         return ZookeeperInstance.getInstance();
     }
 
