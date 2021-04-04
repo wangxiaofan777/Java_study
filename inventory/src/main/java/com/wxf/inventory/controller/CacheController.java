@@ -1,6 +1,7 @@
 package com.wxf.inventory.controller;
 
 import com.wxf.inventory.entity.ProductInfo;
+import com.wxf.inventory.entity.ShopInfo;
 import com.wxf.inventory.response.Response;
 import com.wxf.inventory.service.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,6 @@ public class CacheController {
         return Response.SUCCESS;
     }
 
-
     /**
      * 从本地缓存获取商品信息
      *
@@ -45,4 +45,30 @@ public class CacheController {
         return this.cacheService.getLocalCache(id);
     }
 
+    @GetMapping(value = "/getProductInfo")
+    public ProductInfo getProductInfo(Long productId) {
+        ProductInfo productInfo = this.cacheService.getProductInfo2RedisCache(productId);
+        if (productInfo == null)
+            productInfo = this.cacheService.getProductInfo2LocalCache(productId);
+
+        if (productInfo == null) {
+            // 需要从数据库中获取
+            productInfo = new ProductInfo(1L, "ceshi", 13);
+        }
+        return productInfo;
+    }
+
+    @GetMapping(value = "/getShopInfo")
+    public ShopInfo getShopInfo(Long productId) {
+        ShopInfo shopInfo = this.cacheService.getShopInfo2RedisCache(productId);
+
+        if (shopInfo == null)
+            shopInfo = this.cacheService.getShopInfo2LocalCache(productId);
+
+        if (shopInfo == null) {
+            // 需要从数据库中获取
+            shopInfo = new ShopInfo(1L);
+        }
+        return shopInfo;
+    }
 }

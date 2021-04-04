@@ -32,7 +32,7 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
-    @Cacheable(value = CACHE_NAME, key = "'key_' + #id")
+    @Cacheable(value = CACHE_NAME, key = "'key_' + #id", unless = "#result == null ")
     public ProductInfo getLocalCache(Long id) {
         return null;
     }
@@ -44,7 +44,7 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
-    @Cacheable(value = CACHE_NAME, key = "'product_info_' + #id")
+    @Cacheable(value = CACHE_NAME, key = "'product_info_' + #id", unless = "#result == null ")
     public ProductInfo getProductInfo2LocalCache(Long id) {
         return null;
     }
@@ -84,7 +84,7 @@ public class CacheServiceImpl implements CacheService {
     }
 
     @Override
-    @Cacheable(value = CACHE_NAME, key = "'shop_info_'+ #id")
+    @Cacheable(value = CACHE_NAME, key = "'shop_info_'+ #id", unless = "#result == null ")
     public ShopInfo getShopInfo2LocalCache(Long id) {
         return null;
     }
