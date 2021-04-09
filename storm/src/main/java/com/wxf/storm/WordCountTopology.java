@@ -1,6 +1,5 @@
 package com.wxf.storm;
 
-
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
 import org.apache.storm.StormSubmitter;
@@ -192,7 +191,7 @@ public class WordCountTopology {
             config.setNumWorkers(20);
             try {
                 LocalCluster cluster = new LocalCluster();
-                cluster.submitTopology("WordCountTopology", config, builder.createTopology());
+                cluster.submitTopology("com.wxf.storm.WordCountTopology", config, builder.createTopology());
                 Thread.sleep(10000);
                 cluster.shutdown();
             } catch (Exception e) {
