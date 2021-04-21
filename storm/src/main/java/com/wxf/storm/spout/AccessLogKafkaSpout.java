@@ -49,11 +49,6 @@ public class AccessLogKafkaSpout extends BaseRichSpout {
         outputFieldsDeclarer.declare(new Fields("message"));
     }
 
-    public static void main(String[] args) {
-        AccessLogKafkaSpout accessLogKafkaSpout = new AccessLogKafkaSpout();
-        accessLogKafkaSpout.startKafkaConsumer();
-    }
-
     private void startKafkaConsumer() {
         Properties properties = new Properties();
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "redismaster:9092,redisnode1:9092,redisnode2:9092");
