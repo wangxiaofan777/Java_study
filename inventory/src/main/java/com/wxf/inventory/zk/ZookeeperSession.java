@@ -1,6 +1,7 @@
 package com.wxf.inventory.zk;
 
 import org.apache.zookeeper.*;
+import org.apache.zookeeper.data.Stat;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -81,6 +82,54 @@ public class ZookeeperSession {
 
     }
 
+    public void acquireDistributedLock(String path) {
+        try {
+            this.zooKeeper.create(path, "".getBytes(StandardCharsets.UTF_8),
+                    ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+            System.out.println("success to acquire lock " + path + "");
+        } catch (Exception e) {
+            // 如果那个商品对应的锁的node，已经存在了，就是已经被别人加锁了，那么就这里就会报错
+            // NodeExistsException
+            int count = 0;
+            while (true) {
+                try {
+                    Thread.currentThread().sleep(20);
+                    this.zooKeeper.create(path, "".getBytes(),
+                            ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL);
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                    count++;
+                    continue;
+                }
+                System.out.println("success to acquire lock for " + path + " after " + count + " times try......");
+                break;
+            }
+        }
+
+    }
+
+
+    public String getNodeData(String path) {
+        try {
+            return new String(this.zooKeeper.getData(path, false, new Stat()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+
+    public boolean setNodeData(String path, String data) {
+        try {
+            this.zooKeeper.setData(path, data.getBytes(StandardCharsets.UTF_8), -1);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 
     /**
      * 释放掉一个分布式锁
@@ -94,6 +143,24 @@ public class ZookeeperSession {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void releaseDistributedLock(String path) {
+        try {
+            this.zooKeeper.delete(path, -1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean acquireFastFailedDistributedLock(String path) {
+        try {
+            this.zooKeeper.delete(path, -1);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
