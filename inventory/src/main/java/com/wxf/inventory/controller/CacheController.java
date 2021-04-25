@@ -2,6 +2,7 @@ package com.wxf.inventory.controller;
 
 import com.wxf.inventory.entity.ProductInfo;
 import com.wxf.inventory.entity.ShopInfo;
+import com.wxf.inventory.prewarn.CachePrewarnThread;
 import com.wxf.inventory.response.Response;
 import com.wxf.inventory.service.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +74,10 @@ public class CacheController {
             shopInfo = new ShopInfo(1L);
         }
         return shopInfo;
+    }
+
+    @GetMapping("/preWarmCache")
+    public void preWarmCache() {
+        new CachePrewarnThread().start();
     }
 }
