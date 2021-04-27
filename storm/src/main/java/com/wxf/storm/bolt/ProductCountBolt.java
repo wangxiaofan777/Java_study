@@ -70,8 +70,9 @@ public class ProductCountBolt extends BaseRichBolt {
     private class HotProductFindThread implements Runnable {
 
         public void run() {
-            List<Map.Entry<Long, Long>> productCountList = new ArrayList<Map.Entry<Long, Long>>();
-            List<Long> hotProductIdList = new ArrayList<Long>();
+            List<Map.Entry<Long, Long>> productCountList = new ArrayList<>();
+            List<Long> hotProductIdList = new ArrayList<>();
+            List<Long> lastTimeHotProductIdList = new ArrayList<>();
 
             while (true) {
                 // 1、将LRUMap中的数据按照访问次数，进行全局的排序
@@ -158,6 +159,26 @@ public class ProductCountBolt extends BaseRichBolt {
                                 HttpClientUtils.sendGetRequest(appNginxURL);
                             }
                         }
+                    }
+
+                    // 4、热点缓存消失感知
+                    if (lastTimeHotProductIdList.size() == 0) {
+                        if (hotProductIdList.size() > 0) {
+                            lastTimeHotProductIdList = hotProductIdList;
+                        }
+                    } else {
+                        for (long id : lastTimeHotProductIdList) {
+                            if (!hotProductIdList.contains(id)) {
+                                // 说明上次那个商品ID的热点消失了
+                                // 发送一个HTTP请求请求给到流量分发Nginx中，取消热点缓存的标识
+                                String url = "http://redisnode2/canel_hot?productId=" + id;
+                                HttpClientUtils.sendGetRequest(url);
+                            }
+                        }
+                        if (hotProductIdList.size() > 0) {
+                            lastTimeHotProductIdList = hotProductIdList;
+                        }
+
                     }
 
                     Utils.sleep(5000);
