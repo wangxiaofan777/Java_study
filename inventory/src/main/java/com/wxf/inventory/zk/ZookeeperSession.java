@@ -118,6 +118,13 @@ public class ZookeeperSession {
         return "";
     }
 
+    public void createNode(String path) {
+        try {
+            zooKeeper.create(path, "".getBytes(), ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+        } catch (Exception e) {
+
+        }
+    }
 
     public boolean setNodeData(String path, String data) {
         try {
