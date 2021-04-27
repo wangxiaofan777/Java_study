@@ -1,6 +1,7 @@
 package com.wxf.storm.bolt;
 
 import com.alibaba.fastjson.JSONArray;
+import com.wxf.storm.http.HttpClientUtils;
 import com.wxf.storm.zk.ZooKeeperSession;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.storm.task.OutputCollector;
@@ -68,12 +69,11 @@ public class ProductCountBolt extends BaseRichBolt {
 
     private class HotProductFindThread implements Runnable {
 
-        @Override
         public void run() {
             List<Map.Entry<Long, Long>> productCountList = new ArrayList<Map.Entry<Long, Long>>();
             List<Long> hotProductIdList = new ArrayList<Long>();
 
-            while(true) {
+            while (true) {
                 // 1、将LRUMap中的数据按照访问次数，进行全局的排序
                 // 2、计算95%的商品的访问次数的平均值
                 // 3、遍历排序后的商品访问次数，从最大的开始
@@ -82,7 +82,7 @@ public class ProductCountBolt extends BaseRichBolt {
                     productCountList.clear();
                     hotProductIdList.clear();
 
-                    if(productCountMap.size() == 0) {
+                    if (productCountMap.size() == 0) {
                         Utils.sleep(100);
                         continue;
                     }
@@ -91,8 +91,8 @@ public class ProductCountBolt extends BaseRichBolt {
 
                     // 1、先做全局的排序
 
-                    for(Map.Entry<Long, Long> productCountEntry : productCountMap.entrySet()) {
-                        if(productCountList.size() == 0) {
+                    for (Map.Entry<Long, Long> productCountEntry : productCountMap.entrySet()) {
+                        if (productCountList.size() == 0) {
                             productCountList.add(productCountEntry);
                         } else {
                             // 比较大小，生成最热topn的算法有很多种
@@ -100,13 +100,13 @@ public class ProductCountBolt extends BaseRichBolt {
                             // 很有可能还是会有漏洞，但是我已经反复推演了一下了，而且也画图分析过这个算法的运行流程了
                             boolean bigger = false;
 
-                            for(int i = 0; i < productCountList.size(); i++){
+                            for (int i = 0; i < productCountList.size(); i++) {
                                 Map.Entry<Long, Long> topnProductCountEntry = productCountList.get(i);
 
-                                if(productCountEntry.getValue() > topnProductCountEntry.getValue()) {
+                                if (productCountEntry.getValue() > topnProductCountEntry.getValue()) {
                                     int lastIndex = productCountList.size() < productCountMap.size() ? productCountList.size() - 1 : productCountMap.size() - 2;
-                                    for(int j = lastIndex; j >= i; j--) {
-                                        if(j + 1 == productCountList.size()) {
+                                    for (int j = lastIndex; j >= i; j--) {
+                                        if (j + 1 == productCountList.size()) {
                                             productCountList.add(null);
                                         }
                                         productCountList.set(j + 1, productCountList.get(j));
@@ -117,8 +117,8 @@ public class ProductCountBolt extends BaseRichBolt {
                                 }
                             }
 
-                            if(!bigger) {
-                                if(productCountList.size() < productCountMap.size()) {
+                            if (!bigger) {
+                                if (productCountList.size() < productCountMap.size()) {
                                     productCountList.add(productCountEntry);
                                 }
                             }
@@ -126,19 +126,37 @@ public class ProductCountBolt extends BaseRichBolt {
                     }
 
                     // 2、计算出95%的商品的访问次数的平均值
-                    int calculateCount = (int)Math.floor(productCountList.size() * 0.95);
+                    int calculateCount = (int) Math.floor(productCountList.size() * 0.95);
 
                     Long totalCount = 0L;
-                    for(int i = productCountList.size() - 1; i >= productCountList.size() - calculateCount; i--) {
+                    for (int i = productCountList.size() - 1; i >= productCountList.size() - calculateCount; i--) {
                         totalCount += productCountList.get(i).getValue();
                     }
 
                     long avgCount = totalCount / calculateCount;
 
                     // 3、从第一个元素开始遍历，判断是否是平均值得10倍
-                    for(Map.Entry<Long, Long> productCountEntry : productCountList) {
-                        if(productCountEntry.getValue() > 10 * avgCount) {
+                    for (Map.Entry<Long, Long> productCountEntry : productCountList) {
+                        if (productCountEntry.getValue() > 10 * avgCount) {
                             hotProductIdList.add(productCountEntry.getKey());
+
+                            // 将缓存热点反向推送到流量分发的nginx中
+                            Long productId = productCountEntry.getKey();
+                            String distributeNginxURL = "http://redisnode2/hot?productId=" + productId;
+                            HttpClientUtils.sendGetRequest(distributeNginxURL);
+
+                            // 将缓存热点，那个商品对应的完整的缓存数据，发送请求到缓存服务去获取，反向推送到所有的后端应用nginx服务器上去
+                            String cacheServiceURL = "http://127.0.0.1:8080/getProductInfo?productId=" + productId;
+                            String response = HttpClientUtils.sendGetRequest(cacheServiceURL);
+
+                            String[] appNginxURLs = new String[]{
+                                    "http://redismaster/hot?productId=" + productId + "&productInfo=" + response,
+                                    "http://redisnode1/hot?productId=" + productId + "&productInfo=" + response
+                            };
+
+                            for (String appNginxURL : appNginxURLs) {
+                                HttpClientUtils.sendGetRequest(appNginxURL);
+                            }
                         }
                     }
 
@@ -148,6 +166,7 @@ public class ProductCountBolt extends BaseRichBolt {
                 }
             }
         }
+
     }
 
     private class ProductCountThread implements Runnable {
