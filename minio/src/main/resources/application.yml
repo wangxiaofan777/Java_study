@@ -1,0 +1,8 @@
+
+# minio 连接参数
+minio:
+  endpoint: 10.1.100.23
+  port: 9000
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucketName: image
