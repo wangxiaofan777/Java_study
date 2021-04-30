@@ -1,4 +1,4 @@
-package com.wxf.product.eshop.product;
+package com.wxf.product.eshop.product.ha;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
