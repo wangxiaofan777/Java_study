@@ -23,6 +23,7 @@
         <module>web</module>
         <module>inventory</module>
         <module>storm</module>
+        <module>netty</module>
     </modules>
 
     <properties>
