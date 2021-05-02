@@ -3,6 +3,7 @@ package com.wxf.eshaop.cache.ha.controller;
 
 import com.netflix.hystrix.HystrixCommand;
 import com.wxf.eshaop.cache.ha.http.HttpClientUtils;
+import com.wxf.eshaop.cache.ha.hystrix.command.GetCityNameCommand;
 import com.wxf.eshaop.cache.ha.hystrix.command.GetProductInfoCommand;
 import com.wxf.eshaop.cache.ha.hystrix.command.GetProductInfosCommand;
 import com.wxf.eshaop.cache.ha.model.ProductInfo;
@@ -37,6 +38,8 @@ public class CacheController {
         HystrixCommand<ProductInfo> productInfoCommand = new GetProductInfoCommand(productId);
         // 同步
         ProductInfo productInfo = productInfoCommand.execute();
+        GetCityNameCommand getCityNameCommand = new GetCityNameCommand(productInfo.getCityId());
+        productInfo.setCityName(getCityNameCommand.execute());
         System.out.println(productInfo);
         return "success";
     }

@@ -18,5 +18,8 @@ public class ProductInfo {
     private String size;
     private Long shopId;
     private String modifyTime;
+    private Long cityId;
+    private String cityName;
+
 
 }
