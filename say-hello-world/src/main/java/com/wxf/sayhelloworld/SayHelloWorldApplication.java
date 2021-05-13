@@ -19,8 +19,8 @@ public class SayHelloWorldApplication {
     @Value("${server.port}")
     private String port;
 
-    @GetMapping("/hello")
-    public String hello(String name) {
+    @GetMapping("/sayHello")
+    public String sayHello(String name) {
         return "hello," + name + " from port:" + port;
     }
 }
