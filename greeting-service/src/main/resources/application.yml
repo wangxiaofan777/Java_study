@@ -12,10 +12,10 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
 
-# 开启降级
+
 hystrix:
   metrics:
-    enabled: true
+    enabled: true # 开启降级
   dashboard:
     proxy-stream-allow-list: "*"
 management:
@@ -23,3 +23,14 @@ management:
     web:
       exposure:
         include: "*"
+      base-path: /
+
+#  endpoint:
+#    hystrix:
+#      stream:
+#        enabled: true
+
+# feign默认不开启Hystrix
+feign:
+  hystrix:
+    enabled: true
