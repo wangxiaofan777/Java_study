@@ -20,6 +20,7 @@ public class ProductInfo {
     private String modifyTime;
     private Long cityId;
     private String cityName;
-
+    private Long brandId;
+    private String brandName;
 
 }

@@ -25,10 +25,13 @@ public class GetProductInfoCommand extends HystrixCommand<ProductInfo> {
         return JSONObject.parseObject(response, ProductInfo.class);
     }
 
-    @Override
+    /*@Override
     protected String getCacheKey() {
         return "product_info_" + productId;
+    }*/
+
+    @Override
+    protected ProductInfo getFallback() {
+        return super.getFallback();
     }
-
-
 }

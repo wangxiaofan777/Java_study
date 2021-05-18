@@ -1,26 +1,34 @@
 package com.wxf;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.annotation.JSONField;
-import lombok.Data;
-
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
-
-    @Data
-    static class Test{
-
-        private Map contribution;
-    }
+//    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static ThreadLocal<SimpleDateFormat> sdf = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
 
     public static void main(String[] args) {
-        String str = "{\n" +
-                "\"contribution\":{\"key1\":\"value1\",\"key2\":\"value2\",\"key3\":\"value3\",\"key4\":\"value4\"}\n" +
-                "}";
+        while (true) {
 
-        Test map = JSONObject.parseObject(str, Test.class);
-        System.out.println(map.toString());
+          
+            new Thread(() -> {
+                String dateStr = sdf.get().format(new Date());
+                try {
+                    Date parseDate = sdf.get().parse(dateStr);
+                    String dateStrCheck = sdf.get().format(parseDate);
+                    boolean equals = dateStr.equals(dateStrCheck);
+                    if (!equals) {
+                        System.out.println(equals + " " + dateStr + " " + dateStrCheck);
+                    } else {
+                        System.out.println(equals);
+                    }
+                } catch (ParseException e) {
+                    System.out.println(e.getMessage());
+                }
+            }).start();
+        }
 
     }
 }
