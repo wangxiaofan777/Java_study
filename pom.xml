@@ -24,6 +24,8 @@
         <module>inventory</module>
         <module>storm</module>
         <module>netty</module>
+        <module>reactive-service</module>
+        <module>minio</module>
     </modules>
 
     <properties>
