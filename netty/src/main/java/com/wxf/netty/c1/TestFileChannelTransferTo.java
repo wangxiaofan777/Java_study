@@ -12,7 +12,15 @@ public class TestFileChannelTransferTo {
                 FileChannel from = new FileInputStream("data.txt").getChannel();
                 FileChannel to = new FileOutputStream("to.txt").getChannel()) {
 
-            final long l = from.transferTo(0, from.size(), to);
+
+            // 效率高，底层会利用操作系统的零拷贝进行优化， 最大为2g
+            long size = from.size();
+
+//            from.transferTo(0, size, to);
+
+            for (long left = size; left > 0; ) {
+                left -= from.transferTo((size - left), left, to);
+            }
 
         } catch (IOException e) {
         }
